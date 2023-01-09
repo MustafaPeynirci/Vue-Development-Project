@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <p><a v-bind:href="url" v-bind:title="urlTitle">{{urlContent}}</a></p>
+        <p><a :href="url" :title="urlTitle">{{urlContent}}</a></p>
+
+        <p :id="'id value '+ID"> {{ID}} </p>
+
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                url: "https://github.com/MustafaPeynirci",
+                urlTitle: "Mustafa Github",
+                urlContent: "Go Github",
+                ID: 7
+            }
+        })
+    </script>
+</body>
+</html>

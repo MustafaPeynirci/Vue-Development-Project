@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <div>
+            <select class="form-control" v-model="selectedStyle">
+                <option value="alert alert-success">Success</option>
+                <option value="alert alert-warning">Warning</option>
+                <option value="alert alert-info">Info</option>
+                <option value="alert alert-danger">Danger</option>
+            </select>
+            <p :class="selectedStyle">Vue.js</p>
+        </div>
+            <hr>
+        <div>
+            <p :class="[successBg, whiteText, 'jumbotron']">Nuxt.js</p>
+        </div>    
+
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                selectedStyle: "alert alert-success",
+                successBg: "bg-success",
+                whiteText: "text-white"
+            }
+        })
+    </script>
+</body>
+</html>

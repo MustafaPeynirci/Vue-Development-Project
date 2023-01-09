@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+<div id="app" class="p-5">
+
+    <span class="badge badge-success">{{ number }}</span>
+    
+</div>
+<script src="../assets/js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    name: "vueDevelopmentProject",
+    data: {
+      number: 3
+    },
+    created(){
+      console.log("Instance created")
+    },
+    mounted(){
+      console.log("DOM adding")
+      this.number = Math.floor(Math.random()*49)+1
+     },
+    updated(){
+      console.log("DOM updated")
+    },
+    destroyed(){
+      console.log("Instance deleted")
+    }
+  })
+  app.$destroy()
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <div>
+            <p>{{message}}</p> 
+            <p v-text="message_hmtl"></p>
+            <p v-html="message_hmtl"></p>
+        </div>
+            <hr>
+        <div>
+            <label>Message</label>
+            <input type="text" class="form-control" v-model="message">
+        </div>
+            <hr>
+        <div>
+            <label>Price</label>
+            <input type="text" class="form-control" v-model="price">
+            <p>Vat: {{ price * 18 / 100}} </p>
+            <p>{{ (price * 18 / 100)<5 ? "Vat low" : "Vat high" }}</p>
+            <p v-once>{{ (price * 18 / 100)<5 ? "Vat low" : "Vat high" }}</p>
+        </div>
+
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                message: "hello vue!",
+                message_hmtl: "hello <b>world</b>",
+                price: 12
+            }
+        })
+    </script>
+</body>
+</html>
