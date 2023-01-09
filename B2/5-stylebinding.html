@@ -22,8 +22,28 @@
         <div>
             <p :class="[successBg, whiteText, 'jumbotron']">Nuxt.js</p>
         </div>    
+            <hr>
+        <div class="form-group row">
+            <label for="name" class="col-sm-2">Name</label>
+            <div class="col-sm-10">
+                <input type="text" id="name" v-model="user.name" :class="{ 'form-control is-valid' : user.name, 'form-control is-invalid' : !user.name }" >
+                <span> {{user.name.length}} character</span>
+            </div>
+        </div>   
+            <hr> 
+        <div class="form-group row">
+            <label class="col-sm-2">Role</label>
+            <div class="col-sm-10">
+                <span :class="{ 'badge badge-success' : user.role == 'Admin', 'badge badge-warning' : user.role == 'Employee' }">{{user.role}}</span>
+            </div>
+        </div>  
+            <hr>
+        <div>
+            <p :style="style">Mustafa Peynirci</p>
+        </div>      
 
     </div>
+
     <script src="../assets/js/vue.js"></script>
     <script>
         const app = new Vue({
@@ -32,7 +52,16 @@
             data: {
                 selectedStyle: "alert alert-success",
                 successBg: "bg-success",
-                whiteText: "text-white"
+                whiteText: "text-white",
+                user: {
+                    id: 1,
+                    name: "Mustafa",
+                    role: "Admin"
+                },
+                style: {
+                    color: "red",
+                    fontSize: "23px"
+                }
             }
         })
     </script>
