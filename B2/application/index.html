@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Application</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <button class="btn btn-info float-right" @click="createUser">Add</button>
+        <h1>USERS</h1>
+        <span>[ {{users.length}} user ]</span>
+        <table class="table table-hover">
+            <thead>
+                <tr class="bg-secondary text-white">
+                    <th>Index</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(user, index) in users">
+                    <td>{{index}}</td>
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.role}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                <div class="form-group row">
+                    <label for="recipient-name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" v-model="activeUser.name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Role</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" v-model="activeUser.role">
+                            <option value="">Select</option>
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                        </select>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" @click="addUser">Save</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+    <script src="../../assets/js/vue.js"></script>
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
