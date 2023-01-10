@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <div class="alert alert-success">
+            {{message}}
+        </div>
+        <!-- <button class="btn btn-primary" v-on:click="changed">Change</button> -->
+        <button class="btn btn-primary" @click="changed">Change</button>
+        <hr>
+        <form @submit.prevent="true">
+            <div class="form-gruop row">
+                <label for="" class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" v-model="email" @keypress.enter="saveEmail">
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                message: "Hello Vue!",
+                email: ""
+            },
+            methods: {
+                changed(){
+                    this.message = "Hi guys."
+                },
+                saveEmail(){
+                    if(this.email){
+                        this.message = "Email saved!"
+                    }
+                } 
+            }
+        })
+    </script>
+</body>
+</html>
