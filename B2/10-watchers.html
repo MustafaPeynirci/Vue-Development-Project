@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <div>
+            <label>Wood</label>
+            <input type="number" v-model="wood" class="form-control">
+            <label>Stone</label>
+            <input type="number" v-model="stone" class="form-control">
+            <span>Total: {{total}}</span>
+        </div>
+
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                wood: 0,
+                stone: 0,
+                total: 0
+            },
+            watch: {
+                wood(newValue, oldValue){
+                    console.log("newValueWood: ", newValue, "oldValueWood: ", oldValue)
+                    this.total = parseInt(this.wood) + parseInt(this.stone) 
+                },
+                stone(newValue, oldValue){
+                    console.log("newValueStone: ", newValue, "oldValueStone: ", oldValue)
+                    this.total = parseInt(this.wood) + parseInt(this.stone)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

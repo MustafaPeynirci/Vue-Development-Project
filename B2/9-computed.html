@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <input type="text" v-model="name" class="form-control m-1">
+        <input type="text" v-model="surname" class="form-control m-1">
+        <p>{{combine}}</p>
+        <hr>
+
+        <input type="text" v-model="product_price" class="form-control">
+        <span>{{productVatPrice}} vat</span>
+        <hr>
+
+        <p>{{combine2}}</p>
+        <hr>
+
+        <h3>Computed & Methods Difference</h3>
+        <p>{{combine}}</p>
+        <p>{{combine}}</p>
+        <p>{{combine}}</p>
+            <b>Look at the log</b>
+        <p>{{combine3()}}</p>
+        <p>{{combine3()}}</p>
+        <p>{{combine3()}}</p>
+        <hr>
+        
+        <ul>
+            <li v-for="user in usersStartingWith">{{user}}</li>
+        </ul>
+
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                name: "Mustafa",
+                surname: "Peynirci",
+                product_price: 12,
+                users: ["mustafa", "gürhan", "hasan", "can"]
+            },
+            computed: {
+                combine(){
+                    console.log("Computed worked");
+                    return this.name + " " + this.surname
+                },
+                productVatPrice(){
+                    return this.product_price * 18 / 100
+                },
+                combine2: {
+                    get: function(){
+                        return this.name + " " + this.surname
+                    },
+                    set: function(value){
+                        let parts = value.split(" ")
+                        this.name = parts[0]
+                        this.surname = parts[1]
+                    }
+                },
+                usersStartingWith(){
+                    return this.users.filter((fltr)=> fltr.startsWith("c"))
+                }
+            },
+            methods: {
+                combine3(){
+                    console.log("Methods worked")
+                    return this.name + " " + this.surname
+                }
+            }
+        })
+    </script>
+</body>
+</html>

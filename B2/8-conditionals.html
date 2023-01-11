@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <input type="text" class="form-control" v-model="name">
+        <span v-if="name.length > 0"> {{name.length}} character</span>
+        <hr>
+        <button class="btn btn-primary" @click="changeVisible">Visible / Invisible</button>
+        <div v-if="isVisible">
+            <p>
+                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. 
+                Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. 
+                Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+            </p>
+        </div>
+        <div v-show="isVisible">
+            <p>
+                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. 
+                Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. 
+                Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+            </p>
+        </div>
+        <hr>
+        <select v-model="userType" class="form-control">
+            <option value="">-- Select --</option>
+            <option value="admin">Admin</option>
+            <option value="employee">Employee</option>
+            <option value="instructor">Instructor</option>
+        </select>
+        <div v-if="userType === 'admin'">
+            <h3>Admin Menu</h3>
+            <p>...</p>
+        </div>
+        <div v-else-if="userType === 'employee'">
+            <h3>Employee Menu</h3>
+            <p>...</p>
+        </div>
+        <div v-else-if="userType === 'instructor'">
+            <h3>Instructor Menu</h3>
+            <p>...</p>
+        </div>
+        <div v-else>
+            <p>Please your select!</p>
+        </div>
+
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                name: "Mustafa",
+                isVisible: true,
+                userType: ""
+            },
+            methods: {
+                changeVisible(){
+                    this.isVisible = !this.isVisible
+                }
+            }
+        })
+    </script>
+</body>
+</html>
