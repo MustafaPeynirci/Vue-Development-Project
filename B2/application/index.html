@@ -19,6 +19,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Role</th>
+                    <th>Manage</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +28,10 @@
                     <td>{{user.id}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.role}}</td>
+                    <td> 
+                        <a href="javascript:" @click="deleteUser(user.id)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                        <a href="javascript:" @click="updateUser(index)" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -53,7 +58,8 @@
                         <select class="form-control" v-model="activeUser.role">
                             <option value="">Select</option>
                             <option value="admin">Admin</option>
-                            <option value="user">User</option>
+                            <option value="employee">Employee</option>
+                            <option value="instructor">Instructor</option>
                         </select>
                     </div>
                 </div>
