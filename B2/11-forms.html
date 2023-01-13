@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <form>
+            <label>Name</label>
+            <input type="text" class="form-control" v-model="user.name">
+            
+            <label>Address</label>
+            <textarea class="form-control" v-model="user.address" cols="30" rows="10"></textarea>
+            <hr>
+            
+            <input type="checkbox" v-model="user.isActive"> is it active
+            <pre class="form-text text-muted">{{user.isActive}}</pre>
+            <hr>
+
+            <input type="checkbox" v-model="user.selectedRole" value="0"> Admin
+            <input type="checkbox" v-model="user.selectedRole" value="1"> Employee
+            <input type="checkbox" v-model="user.selectedRole" value="2"> Instructor
+            <input type="checkbox" v-model="user.selectedRole" value="3"> Applicant
+            <select class="form-control col-4" v-model="user.selectedRole" multiple>
+                <option value="0">Admin</option>
+                <option value="1">Employee</option>
+                <option value="2">Instructor</option>
+                <option value="3">Applicant</option>
+            </select>
+            <pre class="form-text text-muted">{{user.selectedRole}}</pre>
+            <hr>
+
+            <input type="radio" v-model="user.gender" value="M"> Man
+            <input type="radio" v-model="user.gender" value="F"> Famale
+            <pre class="form-text text-muted">{{user.gender}}</pre>
+            <hr>
+
+            <select class="form-control col-4" v-model="user.birthPlace">
+                <option value="">-- Select --</option>
+                <option v-for="city in citys" :value="city.plate">{{city.name}}</option>
+            </select>
+            <pre class="form-text text-muted">{{user.birthPlace}}</pre>
+        </form>
+
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                user: {
+                    name: "Mustafa",
+                    address: "Home",
+                    isActive: true,
+                    selectedRole: [],
+                    gender: "",
+                    birthPlace: 06
+                },
+                citys: [
+                    {name: "Ankara", plate: 06},
+                    {name: "İstanbul", plate: 34},
+                    {name: "İzmir", plate: 35}
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
