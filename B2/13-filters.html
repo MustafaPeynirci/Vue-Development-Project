@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <p>{{message | uppercaseLetter}}</p>
+        <p>{{message | lowercaseLetter}}</p>
+        <p>{{message | firstLetterUppercase}}</p>
+        <p>{{message | firstLettersUppercase}}</p>
+        <p>{{message | reverse}}</p>
+        <p>{{message | truncate(7)}}</p>
+        <p>{{message | reverse | truncate(7)}}</p>
+        <p :title="message | lowercaseLetter">lowercase filter (title)</p>
+        <hr>
+
+        <input type="text" class="form-control" v-model.trim="message">
+        <pre class="alert alert-info">{{message}}</pre>
+        <input type="text" class="form-control" v-model.number="number">
+        <pre class="alert alert-info">{{number + number}}</pre>
+
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+
+        Vue.filter("reverse", function(value){
+            return value.toString().split("").reverse().join("")
+        })
+        Vue.filter("truncate", function(value, length){
+            if(value.length < length){
+                return value
+            }
+            length = length - 3
+            return value.substring(0, length) + "..."
+        })
+
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                message: "lorem ipsum Dolor sit amet",
+                number: 10
+            },
+            filters: {
+                uppercaseLetter(value){
+                    return value.toString().toUpperCase()
+                },
+                lowercaseLetter(value){
+                    return value.toString().toLowerCase()
+                },
+                firstLetterUppercase(value){
+                    return value.toString().charAt(0).toUpperCase() + value.slice(1) + " "
+                },
+                firstLettersUppercase(value){
+                    let words = value.toString().split(" ")
+                    let returnValues = ""
+                    words.forEach((word)=>{
+                        returnValues += word.toString().charAt(0).toUpperCase() + word.slice(1) + " "
+                    })
+                    return returnValues
+                }
+            }
+        })
+    </script>
+</body>
+</html>
