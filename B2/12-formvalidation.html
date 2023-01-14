@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+    <link rel="stylesheet" href="../assets/css/toastr.min.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <div class="alert alert-danger" v-if="errors.length > 0">
+            <ul>
+                <li v-for="error in errors">{{error}}</li>
+            </ul>
+        </div>
+
+        <form method="post" @submit="submit" novalidate="true">
+            <div class="form-group">
+              <label>Name & Surname</label>
+              <input type="text" class="form-control" v-model="name_surname" placeholder="Name & Surname">
+            </div>
+            <div class="form-group">
+              <label>Email address</label>
+              <input type="email" class="form-control" v-model="email" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" v-model="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <label>Password Repeat</label>
+              <input type="password" class="form-control" v-model="passwordMatch" placeholder="Password repeat">
+            </div>
+            <div class="form-check">
+            <input type="checkbox" class="form-check-input" v-model="choice" value="0">
+            <label class="form-check-label">Technology</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" v-model="choice" value="1">
+                <label class="form-check-label">Software</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" v-model="choice" value="2">
+                <label class="form-check-label">Aviation</label>  
+            </div>
+            <pre class="form-text text-muted">{{choice}}</pre>
+            <button type="submit" class="btn btn-primary float-right">Submit</button>
+          </form>
+
+    </div>
+    <script src="../assets/js/jquery-2.2.4.min.js"></script>
+    <script src="../assets/js/toastr.min.js"></script>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                name_surname: "",
+                email: "",
+                password: "",
+                passwordMatch: "",
+                choice: [],
+                errors: [] 
+            },
+            methods: {
+                submit(e){
+                    e.preventDefault()
+                    this.errors = []
+                    if(!this.name_surname) this.errors.push("Name & Surname area is compulsory!")
+                    if(!this.email) this.errors.push("Email area is compulsory!")
+                    if(!this.validEmail(this.email)) this.errors.push("Email area is not valid!")
+                    if(!this.password && !this.passwordMatch) this.errors.push("Password area is compulsory!")
+                    if(this.password !== this.passwordMatch) this.errors.push("Passwords area not the same!")
+                    
+                    if(this.errors.length == 0){
+                        let msg = "Form data saved"
+                        toastr.success(msg)
+                        // console.log(msg);
+                    }
+                    else{
+                        let msg = ""
+                        this.errors.forEach((value)=>{
+                            msg += value + "<br>"
+                        })
+                        toastr.error(msg)
+                        // console.log(msg);
+                    }
+                },
+                validEmail: function (email) {
+                    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return re.test(email)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
