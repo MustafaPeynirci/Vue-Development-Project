@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <div v-alert="'success'">{{message}}</div>
+        <div v-bg="{type:'warning'}" class="p-2 mb-4 text-white">{{message}}</div>
+        <hr>
+
+        <input type="text" v-model="allTime" class="form-control col-4">
+        <input type="text" v-model="allTime" v-datetime:date="allTime" class="form-control col-4">
+        <input type="text" v-model="allTime" v-datetime:time="allTime" class="form-control col-4">
+
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                message: "hello vue!",
+                allTime: "2023-01-15 23:32:13"
+            },
+            directives: {
+                alert: function(el, binding){
+                    el.setAttribute("class", "alert alert-" + binding.value)
+                },
+                bg: function(el, binding){
+                    el.setAttribute("class", el.getAttribute("class") + " bg-" + binding.value.type)
+                },
+                datetime: function(el, binding){
+                    if(binding.arg === "date"){
+                        el.value = new Date(binding.value).toLocaleDateString()
+                    }
+                    else{
+                        el.value = new Date(binding.value).toLocaleTimeString()
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
