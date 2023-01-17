@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <alert>Hi</alert>
+        <alert>Hello</alert>
+        <alert></alert>
+        
+        <card>lorem</card>
+        <card></card>
+
+        <card-with-header>
+            <template slot="header">Member Login</template>
+            <template slot="footer">
+                <button class="btn btn-primary">Login</button>
+            </template>
+        </card-with-header>
+      
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+
+        Vue.component("alert",{
+            template: `
+                <div class="alert alert-success">
+                    <slot>Hi</slot>
+                </div>
+            `
+        })
+    
+        Vue.component("card",{
+            template: `
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-text">
+                            <slot>Hi</slot>
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+
+        Vue.component("cardWithHeader",{
+            template: `
+                <div class="card">
+                    <div class="card-header">
+                        <slot name="header">Header</slot>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <slot>Hi</slot>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <slot name="footer">Footer</slot>
+                    </div>
+                </div>
+            `
+        })
+
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                message: "hello vue!"
+            }
+        })
+    </script>
+</body>
+</html>
