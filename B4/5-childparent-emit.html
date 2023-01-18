@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <parent></parent>
+      
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+
+        Vue.component("parent",{
+            template: `
+                <div class="card text-white bg-secondary mb-3">
+                    <div class="card-header">
+                       Parent
+                    </div>
+                    <div class="card-body">
+                       Parent Message {{parentMessage}}
+                        <hr>
+                        <child @onChange="childChanged"></child>
+                    </div>
+                </div>
+            `,
+            data(){
+                return {
+                    parentMessage: ""
+                }
+            },
+            methods: {
+                childChanged(msg){
+                    this.parentMessage = msg
+                }
+            }
+        })
+
+        Vue.component("child",{
+            template: `
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">
+                       Child
+                    </div>
+                    <div class="card-body">
+                       Child Message {{childMessage}}
+                       <div class="form-inline">
+                            <input class="form-control" v-model="childMessage">
+                            <button @click="changeParentMessage" class="btn btn-warning ml-1">Change Parent Message</button>
+                            <button @click="changeParentMessage2" class="btn btn-warning ml-1">Change Parent Message (emit)</button>
+                        </div>
+                    </div>
+                </div>
+            `,
+            data(){
+                return {
+                    childMessage: ""
+                }
+            },
+            methods: {
+                changeParentMessage(){
+                    this.$parent.$data.parentMessage = this.childMessage
+                },
+                changeParentMessage2(){
+                    this.$emit("onChange", this.childMessage)
+                }
+            }
+        })
+
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                message: "hello vue!"
+            }
+        })
+    </script>
+</body>
+</html>
