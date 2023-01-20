@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+
+        <div class="row">
+            <card-item :item="sampleItem"></card-item>
+        </div>
+        <modal></modal>
+      
+    </div>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+
+        Vue.component("cardItem",{
+            props: {
+                "item":{ 
+                    required: true, 
+                    default: {}
+                }
+            },
+            template: 
+            `
+                <div class="col-md-4">
+                        <div class="card">
+                            <img class="card-img-top img-fluid" :src="item.imageUrl" alt="Card Image">    
+                            <div class="card-body">
+                                <h3 class="card-title" v-text="item.title"></h3>
+                                <p class="card-text" v-text="item.description"></p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="javascript:" class="btn btn-primary" @click="showDetail">Detail</a>
+                            </div>
+                        </div>
+                </div>
+            `,
+            methods: {
+                showDetail(){
+                    $("#itemModalDetail").modal()
+                }
+            }
+        })
+
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                message: "hello vue!"
+            }
+        })
+    </script>
+</body>
+</html>
