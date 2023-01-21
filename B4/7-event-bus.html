@@ -20,6 +20,8 @@
     <script src="../assets/js/vue.js"></script>
     <script>
 
+        window.EventBus = new Vue()
+
         Vue.component("cardItem",{
             props: {
                 "item":{ 
@@ -45,7 +47,47 @@
             methods: {
                 showDetail(){
                     $("#itemModalDetail").modal()
+                    window.EventBus.$emit("showDetailInModal", this.item)
                 }
+            }
+        })
+
+        Vue.component("modal",{
+            props: {
+                "title":{required: false, default:"Default Title"}, 
+                "body":{required: false, default:"Default Body"}
+            },
+            template: `
+                <div class="modal fade" id="itemModalDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                            <input type="text" class="form-control" id="recipient-name" v-model="body">
+                        </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            `,
+            created(){
+                window.EventBus.$on("showDetailInModal", (item)=>{
+                    this.title = item.title
+                    this.body = item.description
+                })
             }
         })
 
@@ -53,7 +95,12 @@
             el: "#app",
             name: "vueDevelopmentProject",
             data: {
-                message: "hello vue!"
+                sampleItem: {
+                    imageUrl: "../img/img-card-1.jpg",
+                    title: "Sample Title",
+                    description: "Lorem ipsum dolor sit amet.",
+                    detail: "Loremss"
+                }
             }
         })
     </script>
