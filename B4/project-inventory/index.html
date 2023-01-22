@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../assets/css/app.css">
-    <title>Proje - Envanter Takip Projesi</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/app.css">
+    <title>Project - Inventory Tracking</title>
 </head>
 <body>
 <div id="app">
@@ -13,7 +13,7 @@
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="box.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                Envanter Takip Projesi
+                Inventory Tracking Project
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,35 +30,35 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <h3>Envanter Kayıt Formu</h3>
+                <h3>Inventory Registration Form</h3>
                 <form @submit.prevent="saveItem">
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Başlık</label>
+                        <label class="col-sm-2 col-form-label">Title</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="item.baslik" required>
+                            <input type="text" class="form-control" v-model="item.title" required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Kategori</label>
+                        <label class="col-sm-2 col-form-label">Category</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="item.kategori">
+                            <input type="text" class="form-control" v-model="item.category">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Adet</label>
+                        <label class="col-sm-2 col-form-label">Unit</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="item.adet">
+                            <input type="text" class="form-control" v-model="item.unit">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Fiyat</label>
+                        <label class="col-sm-2 col-form-label">Price</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="item.fiyat" required>
+                            <input type="text" class="form-control" v-model="item.price" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="offset-sm-2 col-sm-2">
-                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                     </div>
                 </form>
@@ -67,63 +67,67 @@
         <hr>
         <div class="row">
             <div class="col">
-                <h3>Aktif Kayıtlar</h3>
-                <table class="table table-sm">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Başlık</th>
-                        <th scope="col">Kategori</th>
-                        <th scope="col">Adet</th>
-                        <th scope="col">Fiyat</th>
-                        <th scope="col">İşlem</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th v-if="!allItems.length">
-                            Listede kayıt yok
-                        </th>
-                    </tr>
-                    <tr v-for="(item, index) in allItems" :key="item.id">
-                        <th scope="row">{{ item.id }}</th>
-                        <td>{{ item.baslik }}</td>
-                        <td>{{ item.kategori }}</td>
-                        <td>{{ item.adet }}</td>
-                        <td>{{ item.fiyat }}</td>
-                        <td>
-                            <button class="btn btn-sm btn-danger" @click="">
-                                Sil
-                            </button>
-                            <button href="#" class="btn btn-sm btn-secondary" @click="" v-if="!item.arsiv">
-                                Arşiv
-                            </button>
-                            <button class="btn btn-sm btn-info" @click="" v-if="item.arsiv">
-                                Arşivden Kaldır
-                            </button>
-                        </td>
-                    </tr>
-                    <tr v-if="allItems.length">
-                        <td>Toplam</td>
-                        <td colspan="2"></td>
-                        <td>0</td>
-                        <td colspan="2">0 TL</td>
-                    </tr>
-                    </tbody>
-                </table>
+               <inventory-list title="Active Items" :items="activeItems"></inventory-list>
             </div>
-
             <div class="col">
-                <h3>Arşiv Kayıtları</h3>
-
+                <inventory-list title="Archive Items" :items="archiveItems"></inventory-list>
             </div>
         </div>
     </div>
 </div>
 
-<script src="../../../assets/js/jquery.min.js "></script>
-<script src="../../../assets/js/bootstrap.min.js "></script>
-<script src="../../../assets/js/vue.js "></script>
+<script type="text/x-template" id="inventory-list-template">
+    <div>
+        <h3>{{title}}</h3>
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Category</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Price</th>
+                <th scope="col">Manage</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th v-if="!items.length">
+                    No entries in th list!
+                </th>
+            </tr>
+            <tr v-for="(item, index) in items" :key="item.id">
+                <th scope="row">{{ item.id }}</th>
+                <td>{{ item.title }}</td>
+                <td>{{ item.category }}</td>
+                <td>{{ item.unit }}</td>
+                <td>{{ item.price }}</td>
+                <td>
+                    <button class="btn btn-sm btn-danger" @click="deleteItem(item.id)">
+                        Delete
+                    </button>
+                    <button href="#" class="btn btn-sm btn-secondary" @click="changeItemStatus(item)" v-if="!item.archive">
+                        Archive
+                    </button>
+                    <button class="btn btn-sm btn-info" @click="changeItemStatus(item)" v-if="item.archive">
+                       Remove from Archive
+                    </button>
+                </td>
+            </tr>
+            <tr v-if="items.length">
+                <td>Total</td>
+                <td colspan="2"></td>
+                <td>{{totalUnit}}</td>
+                <td colspan="2">{{totalPrice}} $</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</script>
+
+<script src="../../assets/js/jquery.min.js "></script>
+<script src="../../assets/js/bootstrap.min.js "></script>
+<script src="../../assets/js/vue.js "></script>
 <script src="app.js "></script>
 </body>
 </html>
