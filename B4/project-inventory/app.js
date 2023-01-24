@@ -56,18 +56,34 @@ const App = new Vue({
             {"id": 2, "title": "Bookself", "category": "Furniture", "unit": "2", "price": 159, "archive": false},
             {"id": 3, "title": "Monitor", "category": "Electronic", "unit": "5", "price": 400, "archive": true}
         ],
+        search: "",
+        filteredItems: []
     },
     created() {
         this.lastId = this.allItems.length
+        this.filteredItems = this.allItems
     },
     computed: {
         activeItems(){
-            return this.allItems.filter(fltr => fltr.archive === false)
+            return this.filteredItems.filter(fltr => fltr.archive === false)
         },
         archiveItems(){
-            return this.allItems.filter(fltr => fltr.archive === true)
+            return this.filteredItems.filter(fltr => fltr.archive === true)
         }
     },
     methods: {
+        searchItems(){
+            this.filteredItems = []
+            if(this.search.length>0){
+                this.allItems.forEach(i => {
+                    if(i.title != null && i.title.includes(this.search)){
+                        this.filteredItems.push(i)
+                    }
+                })
+            }
+            else{
+                this.filteredItems = this.allItems
+            }
+        }
     }
 });

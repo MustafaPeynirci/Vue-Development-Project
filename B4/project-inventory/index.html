@@ -19,9 +19,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <form class="form-inline my-2 my-lg-0 ml-auto">
-                    <input type="search" class="form-control mr-sm-2" placeholder="Ara" aria-label="Ara">
-                    <button class="btn btn-success my-sm-0" type="submit">Ara</button>
+                <form class="form-inline my-2 my-lg-0 ml-auto" @submit.prevent="searchItems">
+                    <input type="search" class="form-control mr-sm-2" placeholder="search..." aria-label="search" v-model="search">
+                    <button class="btn btn-success my-sm-0" type="submit">Search</button>
                 </form>
             </div>
         </div>
