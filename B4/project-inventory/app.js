@@ -1,3 +1,20 @@
+Vue.component("InventoryForm", {
+    template: "#inventory-form-template",
+    data(){
+        return {
+            item: {}
+        }
+    },
+    methods: {
+        saveItem() {
+            Vue.set(this.item, "id", ++this.$parent.$data.lastId)
+            Vue.set(this.item, "archive", false)
+            this.$parent.$data.allItems.push(this.item)
+            this.item = {}
+        }
+    }
+})
+
 Vue.component("InventoryList", {
     template: "#inventory-list-template",
     props: {
@@ -33,7 +50,7 @@ Vue.component("InventoryList", {
 const App = new Vue({
     el: '#app',
     data: {
-        item: {},
+        lastId: 0,
         allItems: [
             {"id": 1, "title": "Table", "category": "Furniture", "unit": "1", "price": 259, "archive": false},
             {"id": 2, "title": "Bookself", "category": "Furniture", "unit": "2", "price": 159, "archive": false},
@@ -41,6 +58,7 @@ const App = new Vue({
         ],
     },
     created() {
+        this.lastId = this.allItems.length
     },
     computed: {
         activeItems(){
