@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+        <div>
+            <router-view></router-view>
+        </div>
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/vue-router.js"></script>
+    <script>
+
+        const page_home = {
+            template:"<h1>Home</h1>"
+        }
+        const page_about = {
+            template:"<h1>About</h1>"
+        }
+        const page_products = {
+            template:"<h1>Products</h1>"
+        }
+        const page_contact = {
+            template:"<h1>Contact</h1>"
+        }
+
+        const routee = [
+            {path:"/", component:page_home},
+            {path:"/about", component:page_about},
+            {path:"/products", component:page_products},
+            {path:"/contact", component:page_contact}
+        ]
+
+        const router = new VueRouter({
+            routes: routee
+        })
+
+        const app = new Vue({
+            router: router,
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                message: "hello vue!"
+            }
+        })
+    </script>
+</body>
+</html>
