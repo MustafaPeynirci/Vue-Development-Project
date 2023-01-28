@@ -17,7 +17,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav">
                     <li class="nav-item active">
-                      <router-link to="/" class="nav-link" active-class="active">Home <span class="sr-only">(current)</span></router-link>
+                      <router-link to="/" class="nav-link" active-class="active" exact >Home <span class="sr-only">(current)</span></router-link>
                     </li>
                     <li class="nav-item">
                       <router-link to="/about" class="nav-link" active-class="active">About</router-link>
@@ -44,7 +44,30 @@
             template:"<h1>Home</h1>"
         }
         const page_about = {
-            template:"<h1>About</h1>"
+            template:`
+              <div class="row">
+                <div class="col-md-9">
+                  <h1>About</h1>
+                  <router-view></router-view>
+                </div>
+                <div class="col-md-3">
+                    <div class="list-group">
+                      <router-link to="/about/login" class="list-group-item list-group-item-action">About Login</router-link>
+                      <router-link to="/about/page1" class="list-group-item list-group-item-action">Page 1</router-link>
+                      <router-link to="/about/page2" class="list-group-item list-group-item-action">Page 2</router-link>
+                    </div>
+                </div>
+              </div>
+            `
+        }
+        const login = {
+            template:"<div class='jumbotron'>Login</div>"
+        }
+        const page1 = {
+            template:"<div class='jumbotron'>Page 1</div>"
+        }
+        const page2 = {
+            template:"<div class='jumbotron'>Page 2</div>"
         }
         const page_products = {
             template:`
@@ -77,9 +100,18 @@
             template:`
               <div>
                 <h1>Products {{$route.params.id}} Detail</h1>
-                
+                <a href="#" class="btn btn-primary btn-sm" @click="backTo">Back to</a>
+                <a href="#" class="btn btn-primary btn-sm float-right" @click="returnHome">Home</a>
               </div>
-            `
+            `,
+            methods: {
+              backTo(){
+                this.$router.go(-1)
+              },
+              returnHome(){
+                this.$router.push("/")
+              }
+            }
         }
         const page_contact = {
             template:"<h1>Contact</h1>"
@@ -87,7 +119,11 @@
 
         const routee = [
             {path:"/", component:page_home},
-            {path:"/about", component:page_about},
+            {path:"/about", component:page_about, alias:"/about-us", children:[
+              {path:"login", component:login}, 
+              {path:"page1", component:page1}, 
+              {path:"page2", component:page2}
+            ]},
             {path:"/products", component:page_products},
             {path:"/products/detail/:id", component:page_products_detail, name:"product-detail"},
             {path:"/contact", component:page_contact}
