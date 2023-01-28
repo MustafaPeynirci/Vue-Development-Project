@@ -17,16 +17,16 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav">
                     <li class="nav-item active">
-                      <router-link to="/" class="nav-link">Home <span class="sr-only">(current)</span></router-link>
+                      <router-link to="/" class="nav-link" active-class="active">Home <span class="sr-only">(current)</span></router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link to="/about" class="nav-link">About</router-link>
+                      <router-link to="/about" class="nav-link" active-class="active">About</router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link :to="{path:'products'}" tag="span" class="nav-link">Products</router-link>
+                      <router-link :to="{path:'products'}" tag="span" class="nav-link" active-class="active">Products</router-link>
                     </li>
                     <li class="nav-item">
-                      <router-link :to="contactBinding" class="nav-link">Contact</router-link>
+                      <router-link :to="contactBinding" class="nav-link" active-class="active">Contact</router-link>
                     </li>
                   </ul>
                 </div>
@@ -47,7 +47,39 @@
             template:"<h1>About</h1>"
         }
         const page_products = {
-            template:"<h1>Products</h1>"
+            template:`
+            <div>
+                <h1>Products</h1>
+                <div class="row">
+                  <div class="col-sm-6">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Special title treatment</h5>
+                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                          <router-link :to="{name: 'product-detail', params: {id:1}}" class="btn btn-primary">Go somewhere</router-link>
+                        </div>
+                      </div>
+                    </div>
+                  <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <router-link :to="{name: 'product-detail', params: {id:2}}" class="btn btn-primary">Go somewhere</router-link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            `
+        }
+        const page_products_detail = {
+            template:`
+              <div>
+                <h1>Products {{$route.params.id}} Detail</h1>
+                
+              </div>
+            `
         }
         const page_contact = {
             template:"<h1>Contact</h1>"
@@ -57,6 +89,7 @@
             {path:"/", component:page_home},
             {path:"/about", component:page_about},
             {path:"/products", component:page_products},
+            {path:"/products/detail/:id", component:page_products_detail, name:"product-detail"},
             {path:"/contact", component:page_contact}
         ]
 
