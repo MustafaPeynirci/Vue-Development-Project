@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ContactView from '../views/Contact.vue'
 import NotFound from '../views/NotFound.vue'
+import PhotosView from '../views/Photos.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,11 @@ const routes = [
     path: '/contact',
     name: 'contact',
     component: ContactView
+  },
+  {
+    path: '/photos/:id',
+    name: 'photos',
+    component: PhotosView
   },
   {
     path: "*",
