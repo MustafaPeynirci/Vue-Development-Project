@@ -11,11 +11,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home</a>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/" active-class="active" exact>Home</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Expedition</a>
+                        <router-link class="nav-link" to="/expedition" active-class="active">Expedition</router-link>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Seat</a>
