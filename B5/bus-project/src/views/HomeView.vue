@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import db from "../assets/db.json"
 
 export default {
   name: 'HomeView',
@@ -42,6 +43,9 @@ export default {
       depart: "",
       points: []
     }
+  },
+  created() {
+    this.points = db.points 
   },
   methods: {
     expedition_search(){

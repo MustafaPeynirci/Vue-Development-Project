@@ -1,0 +1,150 @@
+{
+  "points": [
+    {
+      "id": 1,
+      "explanation": "İstanbul-Station"
+    },
+    {
+      "id": 2,
+      "explanation": "Ankara-Station"
+    },
+    {
+      "id": 3,
+      "explanation": "İzmir-Station"
+    },
+    {
+      "id": 4,
+      "explanation": "Bursa-Station"
+    },
+    {
+      "id": 5,
+      "explanation": "Antalya-Station"
+    }
+  ],
+  "expeditions": [
+    {
+      "id": 1,
+      "from": 2,
+      "to": 1,
+      "depart": "2023-08-05 21:00",
+      "price": 60
+    },
+    {
+      "id": 2,
+      "from": 2,
+      "to": 3,
+      "depart": "2023-08-05 22:00",
+      "price": 65
+    }
+  ],
+  "seats": [
+    {
+      "id": 1,
+      "expedition_id": 1,
+      "number": 1,
+      "type": "Single",
+      "location": "Window Side",
+      "gender": "M",
+      "state": 1
+    },
+    {
+      "id": 2,
+      "expedition_id": 1,
+      "number": 2,
+      "type": "Double",
+      "location": "Corridor",
+      "gender": "F",
+      "state": 1
+    },
+    {
+      "id": 3,
+      "expedition_id": 1,
+      "number": 3,
+      "type": "Double",
+      "location": "Window Side",
+      "gender": "M",
+      "state": 1
+    },
+    {
+      "id": 4,
+      "expedition_id": 1,
+      "number": 4,
+      "type": "Single",
+      "location": "Window Side",
+      "gender": "",
+      "state": 0
+    },
+    {
+      "id": 5,
+      "expedition_id": 1,
+      "number": 5,
+      "type": "Double",
+      "location": "Corridor",
+      "gender": "",
+      "state": 0
+    },
+    {
+      "id": 6,
+      "expedition_id": 1,
+      "number": 6,
+      "type": "Double",
+      "location": "Window Side",
+      "gender": "",
+      "state": 0
+    },
+    {
+      "id": 7,
+      "expedition_id": 1,
+      "number": 7,
+      "type": "Single",
+      "location": "Window Side",
+      "gender": "",
+      "state": 0
+    },
+    {
+      "id": 8,
+      "expedition_id": 1,
+      "number": 8,
+      "type": "Double",
+      "location": "Corridor",
+      "gender": "",
+      "state": 0
+    },
+    {
+      "id": 9,
+      "expedition_id": 1,
+      "number": 9,
+      "type": "Double",
+      "location": "Window Side",
+      "gender": "",
+      "state": 0
+    },
+    {
+      "id": 10,
+      "expedition_id": 1,
+      "number": 10,
+      "type": "Single",
+      "location": "Window Side",
+      "gender": "",
+      "state": 1
+    },
+    {
+      "id": 11,
+      "expedition_id": 1,
+      "number": 11,
+      "type": "Double",
+      "location": "Corridor",
+      "gender": "",
+      "state": 0
+    },
+    {
+      "id": 12,
+      "expedition_id": 1,
+      "number": 12,
+      "type": "Double",
+      "location": "Window Side",
+      "gender": "",
+      "state": 0
+    }
+  ]
+}
