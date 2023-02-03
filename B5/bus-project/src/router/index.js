@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import ExpeditionView from '../views/ExpeditionView.vue'
+import LocationView from '../views/LocationView.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +15,11 @@ const routes = [
     path: '/expedition',
     name: 'expedition',
     component: HomeView
+  },
+  {
+    path: '/location/:expedition_id?',
+    name: 'location',
+    component: LocationView
   },
   
 ]

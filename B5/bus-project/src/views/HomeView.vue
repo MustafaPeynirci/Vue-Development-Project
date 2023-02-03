@@ -41,7 +41,7 @@
                         <h4>{{ item.price }} ₺</h4>
                     </td>
                     <td>
-                        <button class="btn btn-success btn-sm bg-success" @click="choose_expedition(item.id)">Choose Seat</button>
+                        <button class="btn btn-outline-success btn-sm" @click="choose_expedition(item.id)">Choose Seat</button>
                     </td>
                 </tr>
             </table>
@@ -101,6 +101,11 @@ export default {
         ("0" + dateTime.getHours()).slice(-2) + ":" +
         ("0" + dateTime.getMinutes()).slice(-2)
       return hours
+    },
+    choose_expedition(expedition_id){
+      this.$router.push({
+        name:"location", params:{expedition_id}
+      })
     }
   }
 }
