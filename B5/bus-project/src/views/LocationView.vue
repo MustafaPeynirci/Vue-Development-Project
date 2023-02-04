@@ -34,13 +34,14 @@
                 </tr>
             </table>
             <div class="d-flex justify-content-end">
-                <button class="btn btn-success" v-if="selected_seats.length>0" @click="passengerInformatıon">Enter Passenger Information</button>
+                <button class="btn btn-success" v-if="selected_seats.length>0" @click="passengerInformation">Enter Passenger Information</button>
             </div>
     </div>
 </template>
 
 <script>
     import db from "../assets/db.json"
+    import { GlobalData } from "@/main"
 
     export default {
         data(){
@@ -48,7 +49,8 @@
                 expeditions: [],
                 seats: [],
                 seats_found: [],
-                selected_seats: []
+                selected_seats: [],
+                selected_expedition: {}
             }
         },
         created(){
@@ -64,7 +66,7 @@
                 }
                 else{
                     this.$router.push({
-                        name:"expedition_search"
+                        name:"expedition"
                     })
                 }
                 this.chosen_expedition = this.expeditions.find(fnd => fnd.id === expedition_id)
@@ -83,42 +85,44 @@
                     this.selected_seats.push(seat)
                 }
             },
-            passengerInformatıon(){
-
+            passengerInformation(){
+                GlobalData.selected_expedition = this.selected_expedition
+                GlobalData.selected_seats = this.selected_seats
+                this.$router.push({name:"passangerInformation"})
             }
         }
     }
 </script>
 <style>
-        .seat {
-            background: url(../assets/img/koltuk-bos.svg) no-repeat;
-            background-size: contain !important;
-            display: inline-block;
-            width: 56px;
-            height: 70px;
-            line-height: 70px;
-            font-weight: bold;
-            text-align: center;
-            color: #555;
-            border: 0;
-            text-decoration: none !important;
-            cursor: pointer;
-            font-size: 20px;
-            padding-right: 5px;
-            margin: 5px 5px 5px 3px;
-        }
+    .seat {
+        background: url(../assets/img/koltuk-bos.svg) no-repeat;
+        background-size: contain !important;
+        display: inline-block;
+        width: 56px;
+        height: 70px;
+        line-height: 70px;
+        font-weight: bold;
+        text-align: center;
+        color: #555;
+        border: 0;
+        text-decoration: none !important;
+        cursor: pointer;
+        font-size: 20px;
+        padding-right: 5px;
+        margin: 5px 5px 5px 3px;
+    }
 
-        .seat-res {
-            background: url(../assets/img/koltuk-rez.svg) no-repeat;
-            color: #fff !important;
-        }
+    .seat-res {
+        background: url(../assets/img/koltuk-rez.svg) no-repeat;
+        color: #fff !important;
+    }
 
-        .seat-full {
-            background: url(../assets/img/koltuk-dolu.svg) no-repeat;
-            color: #fff !important;
-        }
+    .seat-full {
+        background: url(../assets/img/koltuk-dolu.svg) no-repeat;
+        color: #fff !important;
+    }
 
-        .tdcustom{
-            border-width: 2px 1px !important;
-        }
-    </style>
+    .tdcustom{
+        border-width: 2px 1px !important;
+    }
+</style>

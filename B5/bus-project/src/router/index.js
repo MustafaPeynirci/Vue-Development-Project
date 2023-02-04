@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LocationView from '../views/LocationView.vue'
+import PassangerInformationView from '../views/PassangerInformationView.vue'
+import PaymentInformationView from '../views/PaymentInformationView.vue'
 
 Vue.use(VueRouter)
 
@@ -20,6 +22,16 @@ const routes = [
     path: '/location/:expedition_id?',
     name: 'location',
     component: LocationView
+  },
+  {
+    path: '/passangerInformation',
+    name: 'passangerInformation',
+    component: PassangerInformationView
+  },
+  {
+    path: '/paymentInformation',
+    name: 'paymentInformation',
+    component: PaymentInformationView
   },
   
 ]
