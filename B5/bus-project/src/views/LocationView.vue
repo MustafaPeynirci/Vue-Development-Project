@@ -69,7 +69,7 @@
                         name:"expedition"
                     })
                 }
-                this.chosen_expedition = this.expeditions.find(fnd => fnd.id === expedition_id)
+                this.selected_expedition = this.expeditions.find(fnd => fnd.id === expedition_id)
                 this.seats_found = this.seats.filter(fltr => fltr.expedition_id === expedition_id)
             },
             getSeatList(type, location){

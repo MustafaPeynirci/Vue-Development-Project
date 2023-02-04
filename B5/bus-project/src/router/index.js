@@ -32,8 +32,7 @@ const routes = [
     path: '/paymentInformation',
     name: 'paymentInformation',
     component: PaymentInformationView
-  },
-  
+  }
 ]
 
 const router = new VueRouter({
