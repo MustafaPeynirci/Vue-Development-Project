@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+        <table class="table table-striped">
+            <thead>
+            <h3>TODOS</h3>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Completed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <div v-if="isLoading">Loading..</div>
+              <tr v-for="(item, index) in list">
+                <th scope="row">{{index}}</th>
+                <td>{{item.title}}</td>   
+                <td>{{item.completed}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                list: [],
+                isLoading: true
+            },
+            created(){
+                fetch("https://jsonplaceholder.typicode.com/todos")
+                .then((response)=>{
+                    return response.json()
+                })
+                .then((response)=>{
+                    this.isLoading = false
+                    this.list = response
+                })
+            }
+           
+        })
+    </script>
+</body>
+</html>
