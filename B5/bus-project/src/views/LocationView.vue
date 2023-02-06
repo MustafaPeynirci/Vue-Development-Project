@@ -64,6 +64,9 @@
                 if(this.$route.params.expedition_id){
                     expedition_id = parseInt(this.$route.params.expedition_id)
                 }
+                else if(GlobalData.selected_expedition != null && GlobalData.selected_expedition.id){
+                    expedition_id = parseInt(GlobalData.selected_expedition.id)
+                }
                 else{
                     this.$router.push({
                         name:"expedition"

@@ -18,13 +18,13 @@
                         <router-link class="nav-link" to="/expedition" active-class="active">Expedition</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Seat</a>
+                        <router-link class="nav-link" to="/location" active-class="active">Seat</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Passenger</a>
+                        <router-link class="nav-link" to="/passangerInformation" active-class="active">Passenger</router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Payment</a>
+                        <router-link class="nav-link" to="/paymentInformation" active-class="active">Payment</router-link>
                     </li>
                 </ul>
             </div>
