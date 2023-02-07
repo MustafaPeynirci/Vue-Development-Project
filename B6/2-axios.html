@@ -9,40 +9,83 @@
 <body>
     <div id="app" class="p-5">
       <div class="col-8">
-        <table class="table table-striped">
-            <thead>
-            <h3>Axios</h3>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Title</th>
-                <th scope="col">Price</th>
-                <th colspan="2">Manage</th>
-              </tr>
-            </thead>
-            <tbody>
-              <div v-if="isLoading">Loading..</div>
-              <tr v-for="item in list">
-                <td>{{item.id}}</td>   
-                <td>{{item.title}}</td>   
-                <td>{{item.price}}</td>
-                <td>
-                  <button class="btn btn-outline-primary btn-sm">Edit</button>
-                </td>
-                <td>
-                  <button class="btn btn-outline-danger btn-sm">Delete</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <button @click="itemNew" type="button" class="btn btn-primary btn-sm float-right">Add</button>
+          <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addModalLabel">Add Data</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="title" class="col-form-label">Title</label>
+                      <input type="text" class="form-control" id="title" placeholder="title" v-model="formItem.title">
+                    </div>
+                    <div class="form-group">
+                      <label for="category" class="col-form-label">Category</label>
+                      <input type="text" class="form-control" id="category" placeholder="category" v-model="formItem.category">
+                    </div>
+                    <div class="form-group">
+                      <label for="image" class="col-form-label">Image Url</label>
+                      <input type="text" class="form-control" id="image" placeholder="imageUrl" v-model="formItem.image">
+                    </div>
+                    <div class="form-group">
+                      <label for="price" class="col-form-label">Price</label>
+                      <input type="number" class="form-control" id="price" placeholder="23.00" v-model="formItem.price">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" @click="addItem">Add</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <table class="table table-striped">
+              <thead>
+              <h3>Axios</h3>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Price</th>
+                  <th colspan="2">Manage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <div v-if="isLoading">Loading..</div>
+                <tr v-for="item in list">
+                  <td>{{item.id}}</td>   
+                  <td><img :src="item.image" class="rounded w-25"></td>   
+                  <td>{{item.title}}</td>   
+                  <td>{{item.price}}</td>
+                  <td>
+                    <button class="btn btn-outline-primary btn-sm">Edit</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-outline-danger btn-sm">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
         </div>
     </div>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/js/vue.js"></script>
     <script src="../assets/js/axios.min.js"></script>
+    <script src="../assets/js/sweetalert2.all.js"></script>
     <script>
         const app = new Vue({
             el: "#app",
             name: "vueDevelopmentProject",
             data: {
+                formItem: {},
                 list: [],
                 isLoading: true
             },
@@ -59,9 +102,24 @@
                 .catch((error)=>{
                   console.log(error);
                 })
+              },
+              itemNew(){
+                this.formItem = {}
+                $("#addModal").modal({backdrop:"static", keyboard:false, show:true})
+              },
+              addItem(){
+                axios.post("http://localhost:3000/products", this.formItem, this.formItem.id=this.list.length+1)
+                .then((response)=>{
+                  swal("Datas", "Adding", "success")
+                  this.getProducts()
+                  this.formItem = {}
+                  $("#addModal").modal("hide")
+                })
+                .catch((error)=>{
+                  console.log(error)
+                })
               }
             }
-           
         })
     </script>
 </body>

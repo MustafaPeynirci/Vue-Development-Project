@@ -1,25 +1,32 @@
 {
-    "products":[
-        {
-            "id":"1",
-            "title":"Adana Kebab",
-            "category":"Food",
-            "price":"24.50",
-            "image":"../assets/img/urun-adana.jpg"
-        },
-        {
-            "id":"2",
-            "title":"Doner",
-            "category":"Food",
-            "price":"20.00",
-            "image":"../assets/img/urun-etdoner.jpg"
-        },
-        {
-            "id":"3",
-            "title":"Meatball",
-            "category":"Food",
-            "price":"16.25",
-            "image":"../assets/img/urun-izgarakofte.jpg"
-        }
-    ]
+  "products": [
+    {
+      "id": "1",
+      "title": "Adana Kebab",
+      "category": "Food",
+      "price": "24.50",
+      "image": "../assets/img/urun-adana.jpg"
+    },
+    {
+      "id": "2",
+      "title": "Doner",
+      "category": "Food",
+      "price": "20.00",
+      "image": "../assets/img/urun-etdoner.jpg"
+    },
+    {
+      "id": "3",
+      "title": "Meatball",
+      "category": "Food",
+      "price": "16.25",
+      "image": "../assets/img/urun-izgarakofte.jpg"
+    },
+    {
+      "title": "Doner 2",
+      "category": "Food",
+      "image": "../assets/img/urun-etdoner.jpg",
+      "price": "32.00",
+      "id": 4
+    }
+  ]
 }
