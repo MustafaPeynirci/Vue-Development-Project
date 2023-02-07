@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <div id="app" class="p-5">
+      <div class="col-8">
+        <table class="table table-striped">
+            <thead>
+            <h3>Axios</h3>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Price</th>
+                <th colspan="2">Manage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <div v-if="isLoading">Loading..</div>
+              <tr v-for="item in list">
+                <td>{{item.id}}</td>   
+                <td>{{item.title}}</td>   
+                <td>{{item.price}}</td>
+                <td>
+                  <button class="btn btn-outline-primary btn-sm">Edit</button>
+                </td>
+                <td>
+                  <button class="btn btn-outline-danger btn-sm">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/axios.min.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            name: "vueDevelopmentProject",
+            data: {
+                list: [],
+                isLoading: true
+            },
+            created(){
+               this.getProducts()
+            },
+            methods: {
+              getProducts(){
+                axios.get("http://localhost:3000/products")
+                .then((response)=>{
+                  this.isLoading = false
+                  this.list = response.data
+                })
+                .catch((error)=>{
+                  console.log(error);
+                })
+              }
+            }
+           
+        })
+    </script>
+</body>
+</html>
