@@ -111,7 +111,7 @@
                 if(this.formItem.id>0){
                   axios.put("http://localhost:3000/products/" + this.formItem.id, this.formItem)
                   .then((response)=>{
-                    swal("Datas", "Updating", "success")
+                    swal("Datas", "Updated", "success")
                     this.getProducts()
                     this.formItem = {}
                     $("#Modal").modal("hide")
@@ -120,7 +120,7 @@
                 else{
                   axios.post("http://localhost:3000/products", this.formItem, this.formItem.id=this.list.length+1)
                   .then((response)=>{
-                    swal("Datas", "Adding", "success")
+                    swal("Datas", "Added", "success")
                     this.getProducts()
                     this.formItem = {}
                     $("#Modal").modal("hide")
@@ -140,8 +140,24 @@
                   console.log(error)
                 })
               },
-              deleteItem(){
-
+              deleteItem(id){
+                swal({
+                  title:"Are you sure?",
+                  text:"Are you sure you want to delete",
+                  type:"warning",
+                  showCancelButton:true,
+                  cancelButtonText:"Cancel",
+                  confirmButtonText:"Delete"
+                })
+                .then((result)=>{
+                  if(result.value){
+                    axios.delete("http://localhost:3000/products/" + id)
+                    .then((response)=>{
+                      swal("Datas", "Deleted", "success")
+                      this.getProducts()
+                    })
+                  }
+                })
               }
             }
         })

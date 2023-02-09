@@ -20,13 +20,6 @@
       "category": "Food",
       "price": "16.25",
       "image": "../assets/img/urun-izgarakofte.jpg"
-    },
-    {
-      "title": "Doner 2",
-      "category": "Food",
-      "image": "../assets/img/urun-etdoner.jpg",
-      "price": "32.00",
-      "id": 4
     }
   ]
 }
