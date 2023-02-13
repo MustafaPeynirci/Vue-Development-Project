@@ -7,6 +7,14 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@material-ui/icons": "^4.11.3",
+    "@material/fab": "^14.0.0",
+    "bootstrap": "^5.2.3",
+    "fa-icons": "^0.2.0",
+    "firebase": "^9.17.1",
+    "jquery": "^3.6.3",
+    "popper.js": "^1.16.1",
+    "toastr": "^2.1.4",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"

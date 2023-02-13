@@ -1,32 +1,47 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-2">
+      <a class="navbar-brand">Firebase Vue App</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <router-link to="/" class="nav-link" active-class="active" exact>Home</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/dashboard" class="nav-link" active-class="active">Dashboard</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/product-list" class="nav-link" active-class="active">Product List</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/user-list" class="nav-link" active-class="active">User List</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/login" class="nav-link" active-class="active">Login</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/register" class="nav-link" active-class="active">Register</router-link>
+          </li>
+        </ul>
+      </div>
     </nav>
-    <router-view/>
+
+    <router-view />
   </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/toastr/build/toastr.min.css";
 </style>
