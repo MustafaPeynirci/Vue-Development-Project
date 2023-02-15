@@ -1,5 +1,3 @@
-import firebaseConfig from "firebase"
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -14,10 +12,10 @@ const firebaseConfig = {
   projectId: "fir-vue-app-45579",
   storageBucket: "fir-vue-app-45579.appspot.com",
   messagingSenderId: "221315694975",
-  appId: "1:221315694975:web:fae44fa7705a1ffeb9da4a",
-  measurementId: "G-N1JDMJHCKR"
+  appId: "1:221315694975:web:1ee9835586ac872db9da4a",
+  measurementId: "G-KGH39RS9W9"
 };
 
-//   Firebase
-const firebase = initializeApp(firebaseConfig);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);

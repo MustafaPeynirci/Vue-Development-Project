@@ -1,41 +1,76 @@
 <template>
-    <div class="container d-flex justify-content-center mt-5">
-    <h3 class="p-5">Register</h3>
-      <form>
+    <div class="container col-md-4 mt-5">
+    <h3 class="p-1">Register Form</h3>
+      <form @submit.prevent="register">
         <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
+          <label for="email">Email address</label>
           <input
             type="email"
             class="form-control"
-            id="exampleInputEmail1"
+            id="email"
             aria-describedby="emailHelp"
             placeholder="Enter email"
+            v-model="email"
           />
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
+          <label for="password">Password</label>
           <input
             type="password"
             class="form-control"
-            id="exampleInputPassword1"
+            id="password"
             placeholder="Password"
+            v-model="password"
           />
         </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        <div class="form-group">
+          <label for="passwordRepeat">Password Repeat</label>
+          <input
+            type="password"
+            class="form-control"
+            id="passwordRepeat"
+            placeholder="Password Repeat"
+            v-model="passwordRepeat"
+          />
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary mt-2">Sign In</button>
+        </div>
       </form>
     </div>
   </template>
   
   <script>
+  import { app } from "firebase/app";
+
   export default {
     name: "login",
     data() {
-      return {};
+      return {
+        email: "",
+        password: "",
+        passwordRepeat: ""
+      };
     },
+    methods:{
+      register(){
+        if(this.password != this.passwordRepeat){
+          toastr.warning("Password and repeat cannot be the same!")
+        }
+        else{
+          app.auth().createUserWithEmailAndPassword(this.email, this.password)
+          .then(
+            user => {
+              toastr.success("Successfully registered.")
+              this.$router.replace("login")
+            },
+            error => {
+              toastr.error(error.message)
+            }
+          )
+        }
+      }
+    }
   };
   </script>
   
